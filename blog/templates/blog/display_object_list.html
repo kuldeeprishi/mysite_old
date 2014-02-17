@@ -1,0 +1,11 @@
+{% extends "_layout/base.html" %}
+
+{% block content %}
+
+        {% for post in object_list %}
+        <h2>{{post.title}}</h2>
+        <span>Published on: {{post.pub_date|date:"F j, Y"}}</span>
+        <span>by: {{post.author}}</span>
+        <p>{{post.body}}</p>
+    {% endfor %}
+{% endblock content %}

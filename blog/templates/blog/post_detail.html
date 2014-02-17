@@ -1,0 +1,10 @@
+{% extends "_layout/base.html" %}
+
+{% block content %}
+
+        <h2>{{object.title}}</h2>
+        <span>Published on: {{object.pub_date|date:"F j, Y"}}</span>
+        <span>by: {{object.author}}</span>
+        <p>{{object.body}}</p>
+
+{% endblock content %}

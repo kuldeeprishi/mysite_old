@@ -1,11 +1,11 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
-class PostList(ListView):
+class PostListView(ListView):
     queryset = Post.objects.order_by('-pub_date')
     template_name = 'blog/display_object_list.html'
 
 
-def post_detail(request):
-    pass
+class PostDetailView(DetailView):
+    model = Post

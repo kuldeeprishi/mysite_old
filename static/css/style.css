@@ -1,4 +1,12 @@
+body {
+    background: #C6E7EF;
+}
+
 .wrapper {
     width: 800px;
     margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 10px 10px 10px #888888;
+    margin-top: 45px;
+    padding: 15px;
 }

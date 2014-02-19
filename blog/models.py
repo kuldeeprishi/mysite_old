@@ -5,8 +5,8 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
 
-from model_utils.fields import StatusField
-from model_utils import Choices
+#from model_utils.fields import StatusField
+#from model_utils import Choices
 from tagging.fields import TagField
 
 
@@ -14,13 +14,13 @@ class Post(models.Model):
     """
     Model Representing Post Object.
     """
-    STATUS = Choices('draft', 'published')
+    STATUS = ((0, 'Draft'), (1, 'Published'))
     title = models.CharField(max_length=200, verbose_name=_(u'Title'))
     slug = models.SlugField(blank=True, verbose_name=_(u'Slug'))
     author = models.ForeignKey(User)
     body = models.TextField(blank=True, null=True,
                             verbose_name=_(u'Body'))
-    status = StatusField()
+    status = models.IntegerField(choices=STATUS)
     allow_comments = models.BooleanField(default=True,
                                          verbose_name=_(u'Allow Comments'))
     pub_date = models.DateTimeField(default=datetime.today,

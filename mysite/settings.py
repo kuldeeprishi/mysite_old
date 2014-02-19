@@ -140,6 +140,8 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'tagging',
+    'threadedcomments',
+    'django.contrib.comments',
 )
 
 SITE_APPS = (
@@ -148,6 +150,8 @@ SITE_APPS = (
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + SITE_APPS
 
+
+COMMENTS_APP = 'threadedcomments'
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # A sample logging configuration. The only tangible logging

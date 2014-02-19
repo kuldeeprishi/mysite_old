@@ -16,4 +16,5 @@ urlpatterns = patterns(
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^blog/', include('blog.urls')),
+    url(r'^articles/comments/', include('django.contrib.comments.urls')),
 )

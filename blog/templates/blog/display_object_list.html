@@ -9,7 +9,7 @@
 				<article class="is-post is-post-excerpt">
 					<header>
 						<h2><a href="#">{{post.title}}</a></h2>
-						<span class="byline">{{post.author}}</span>
+						<span class="byline"></span>
 					</header>
 					<div class="info">
 						<!--
@@ -38,31 +38,75 @@
 			{% endfor %}
 		    
 			<!-- Pager -->
-				<div class="pager pagination">
-					<!--<a href="#" class="button previous">Previous Page</a>-->
-						{% if page_obj.has_previous %}
-					      <span class="page">
-					      <a href="?page={{ page_obj.previous_page_number }}"class="button next">Prev</a>
-					      </span>
-					   {% endif %}
-					   {% if show_first %}
-					      <span class="page"><a href="?page={{ page_obj.previous_page_number }}">1-custom</a></span>
-					      <span class="ellipsis">...</span>
-					   {% endif %}
-					<div class="pages">
-						{% for page in page_obj.paginator.page_range %}
-								{% ifequal page page_obj.number %}
-								<a href="?page={{ page }}" class="active">{{ page }}</a>
-								{% else %}
-							  	<a href="?page={{ page }}"> {{ page }}</a>
-								{% endifequal %}
-							
-						{% endfor %}
-					</div>{% if page_obj.has_next %}
-					<a href="?page={{ page_obj.next_page_number }}" class="button next">Next</a>
-					{% endif %}
-				</div>
+			<div class="pager pagination">
+				<!--<a href="#" class="button previous">Previous Page</a>-->
+					{% if page_obj.has_previous %}
+				      <span class="page">
+				      <a href="?page={{ page_obj.previous_page_number }}"class="button next">Prev</a>
+				      </span>
+				   {% endif %}
+				   {% if show_first %}
+				      <span class="page"><a href="?page={{ page_obj.previous_page_number }}">1-custom</a></span>
+				      <span class="ellipsis">...</span>
+				   {% endif %}
+				<div class="pages">
+					{% for page in page_obj.paginator.page_range %}
+							{% ifequal page page_obj.number %}
+							<a href="?page={{ page }}" class="active">{{ page }}</a>
+							{% else %}
+						  	<a href="?page={{ page }}"> {{ page }}</a>
+							{% endifequal %}
+						
+					{% endfor %}
+				</div>{% if page_obj.has_next %}
+				<a href="?page={{ page_obj.next_page_number }}" class="button next">Next</a>
+				{% endif %}
+			</div>
 
+
+<div class="month">
+    <table>
+
+    <tr>
+        <td class="empty">Mon</td>
+        <td class="empty">Tue</td>
+        <td class="empty">Wed</td>
+        <td class="empty">Thu</td>
+        <td class="empty">Fri</td>
+        <td class="empty">Sat</td>
+        <td class="empty">Sun</td>
+    </tr>
+
+    {% for week in month_days %}
+        <tr>
+        {% for day, entries, current in week %}
+
+            <!-- TD style: empty | day | current; onClick handler and highlight  -->
+            <td class= {% if day == 0 %}"empty"{% endif %}
+            {% if day != 0 and not current %}"day"{% endif %}
+            {% if day != 0 and current %}"current"{% endif %}
+            {% if day != 0 %}
+                onClick="parent.location='{% url cal.views.day year month day %}'"
+                onMouseOver="this.bgColor='#eeeeee';"
+                onMouseOut="this.bgColor='white';"
+            {% endif %} >
+
+            <!-- Day number and entry snippets -->
+            {% if day != 0 %}
+                {{ day }}
+                {% for entry in entries %}
+                    <br />
+                    <b>{{ entry.creator }}</b>: {{ entry.short|safe }}
+                {% endfor %}
+            {% endif %}
+            </td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+
+    <div class="clear"></div>
+</div>
 		</div>
 	</div>
 {% endblock content %}

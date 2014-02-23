@@ -1,22 +1,25 @@
 from datetime import datetime
+from time import time
 
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
 
-#from model_utils.fields import StatusField
-#from model_utils import Choices
 from tagging.fields import TagField
 
+
+def get_upload_file_name(instance, filename):
+    return 'uploaded_files/{0}{1}'.format(str(time()).replace('.', '_'), filename)
 
 class Post(models.Model):
     """
     Model Representing Post Object.
     """
-    STATUS = (('draft', 0), ('published', 1))
+    STATUS = ((0, 'draft'), (1, 'published'))
     title = models.CharField(max_length=200, verbose_name=_(u'Title'))
     slug = models.SlugField(blank=True, verbose_name=_(u'Slug'))
+    post_image = models.ImageField(upload_to=get_upload_file_name, default="", blank=True, null = True)
     author = models.ForeignKey(User)
     body = models.TextField(blank=True, null=True,
                             verbose_name=_(u'Body'))

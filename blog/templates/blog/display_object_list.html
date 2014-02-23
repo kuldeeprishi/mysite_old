@@ -8,7 +8,7 @@
 							<!-- Post -->
 								<article class="is-post is-post-excerpt">
 									<header>
-										<h2><a href="#">{{post.title}}</a></h2>
+										<h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
 										<span class="byline"></span>
 									</header>
 									<div class="info">
@@ -31,7 +31,11 @@
 											<li><a href="#" class="fa fa-facebook">128</a></li>
 										</ul>
 									</div>
-									<a href="#" class="image image-full"><img src="images/n33-robot-invader.jpg" alt="" /></a>
+									{% if post.post_image %}
+										
+									<a href="#" class="image image-full"><img src="/static/{{post.post_image.url}}" alt="" /></a>
+
+									{% endif %}
 									<p>
 										{{post.body}}
 									</p>

@@ -1,14 +1,22 @@
 {% extends "_layout/base.html" %}
 
 {% block content %}
+<<<<<<< HEAD
     <!-- Content -->
+=======
+<!-- Content -->
+>>>>>>> 92334a2d2bae3295804d96a28b65a17611d6c067
 	<div id="content">
 		<div id="content-inner">
 			{% for post in object_list %}
 			<!-- Post -->
 				<article class="is-post is-post-excerpt">
 					<header>
+<<<<<<< HEAD
 						<h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+=======
+						<h2><a href="#">{{post.title}}</a></h2>
+>>>>>>> 92334a2d2bae3295804d96a28b65a17611d6c067
 						<span class="byline"></span>
 					</header>
 					<div class="info">
@@ -18,9 +26,14 @@
 							element to denote what gets dropped in 1200px mode (eg. the "uary" in "January").
 							Oh, and if you don't need a date for a particular page or post you can simply delete
 							the entire "date" element.
+<<<<<<< HEAD
 							
 						-->
 						<span class="date"><span class="month">Jan<span>uary</span></span> <span class="day">14</span><span class="year">, 2013</span></span>
+=======
+						-->
+						<span class="date"><span class="month">{{post.pub_date|date:"M"}}<span>{{post.pub_date|date:"F"|slice:"3:"}}</span></span> <span class="day">{{post.pub_date|date:"d"}}</span><span class="year">, {{post.pub_date|date:"Y"}}</span></span>
+>>>>>>> 92334a2d2bae3295804d96a28b65a17611d6c067
 						<!--
 							Note: You can change the number of list items in "stats" to whatever you want.
 						-->
@@ -30,6 +43,7 @@
 							<li><a href="#" class="fa fa-twitter">64</a></li>
 							<li><a href="#" class="fa fa-facebook">128</a></li>
 						</ul>
+<<<<<<< HEAD
 					</div>
 					{% if post.post_image %}
 						
@@ -56,6 +70,86 @@
 					<a href="#" class="button next">Next Page</a>
 				</div>
 
+=======
+					</div>
+					<a href="#" class="image image-full"><img src="" alt="" /></a>
+					<p>
+						{{post.body}}
+					</p>
+				</article>
+			{% endfor %}
+		    
+			<!-- Pager -->
+			<div class="pager pagination">
+				<!--<a href="#" class="button previous">Previous Page</a>-->
+					{% if page_obj.has_previous %}
+				      <span class="page">
+				      <a href="?page={{ page_obj.previous_page_number }}"class="button next">Prev</a>
+				      </span>
+				   {% endif %}
+				   {% if show_first %}
+				      <span class="page"><a href="?page={{ page_obj.previous_page_number }}">1-custom</a></span>
+				      <span class="ellipsis">...</span>
+				   {% endif %}
+				<div class="pages">
+					{% for page in page_obj.paginator.page_range %}
+							{% ifequal page page_obj.number %}
+							<a href="?page={{ page }}" class="active">{{ page }}</a>
+							{% else %}
+						  	<a href="?page={{ page }}"> {{ page }}</a>
+							{% endifequal %}
+						
+					{% endfor %}
+				</div>{% if page_obj.has_next %}
+				<a href="?page={{ page_obj.next_page_number }}" class="button next">Next</a>
+				{% endif %}
+			</div>
+
+
+<div class="month">
+    <table>
+
+    <tr>
+        <td class="empty">Mon</td>
+        <td class="empty">Tue</td>
+        <td class="empty">Wed</td>
+        <td class="empty">Thu</td>
+        <td class="empty">Fri</td>
+        <td class="empty">Sat</td>
+        <td class="empty">Sun</td>
+    </tr>
+
+    {% for week in month_days %}
+        <tr>
+        {% for day, entries, current in week %}
+
+            <!-- TD style: empty | day | current; onClick handler and highlight  -->
+            <td class= {% if day == 0 %}"empty"{% endif %}
+            {% if day != 0 and not current %}"day"{% endif %}
+            {% if day != 0 and current %}"current"{% endif %}
+            {% if day != 0 %}
+                onClick="parent.location='{% url cal.views.day year month day %}'"
+                onMouseOver="this.bgColor='#eeeeee';"
+                onMouseOut="this.bgColor='white';"
+            {% endif %} >
+
+            <!-- Day number and entry snippets -->
+            {% if day != 0 %}
+                {{ day }}
+                {% for entry in entries %}
+                    <br />
+                    <b>{{ entry.creator }}</b>: {{ entry.short|safe }}
+                {% endfor %}
+            {% endif %}
+            </td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+
+    <div class="clear"></div>
+</div>
+>>>>>>> 92334a2d2bae3295804d96a28b65a17611d6c067
 		</div>
 	</div>
 {% endblock content %}

@@ -14,6 +14,7 @@ post_info_dict = {
 urlpatterns = patterns(
     '',
     # All Post Listing
+    (r'^page(?P<page>[0-9]+)/$', PostListView.as_view()),
     url(r'^$', PostListView.as_view(), name='post_list'),
 
     # Yearly Archive

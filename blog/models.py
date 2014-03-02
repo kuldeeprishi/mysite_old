@@ -16,7 +16,11 @@ class Post(models.Model):
     """
     Model Representing Post Object.
     """
+<<<<<<< HEAD
     STATUS = ((0, 'draft'), (1, 'published'))
+=======
+    STATUS = ((0, 'Draft'), (1, 'Published'))
+>>>>>>> 92334a2d2bae3295804d96a28b65a17611d6c067
     title = models.CharField(max_length=200, verbose_name=_(u'Title'))
     slug = models.SlugField(blank=True, verbose_name=_(u'Slug'))
     post_image = models.ImageField(upload_to=get_upload_file_name, default="", blank=True, null = True)

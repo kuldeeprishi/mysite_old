@@ -34,6 +34,7 @@
 						
 					<a href="#" class="image image-full"><img src="/static/{{object.post_image.url}}" alt="" /></a>
 
+<<<<<<< HEAD
 					{% endif %}
 					<p>
 						{{object.body}}
@@ -41,4 +42,21 @@
 				</article>
 		</div>
 	</div>
+=======
+        <h2>{{object.title}}</h2>
+        <div>
+            <span>Published on: {{object.pub_date|date:"F j, Y"}}</span>
+            <span>by: {{object.author}}</span>
+        </div>
+        <p>{{object.body}}</p>
+
+        {% load threadedcomments_tags %}
+
+
+        <h2>Comments for {{ object.title }}:</h2>
+
+        {% render_comment_list for object %}
+        {% render_comment_form for object %}
+
+>>>>>>> 92334a2d2bae3295804d96a28b65a17611d6c067
 {% endblock content %}

@@ -144,6 +144,7 @@ THIRD_PARTY_APPS = (
 
 SITE_APPS = (
     'blog',
+    'userprofile',
 )
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + SITE_APPS
